@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "terminus:pixelsize=14:antialias=true:autohint=true";
+static char *font = "ubuntu mono:pixelsize=14:antialias=true:autohint=true";
 static int borderpx = 4;
 
 /*
@@ -120,8 +120,8 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#b9b9b9", /* default foreground colour */
-	"#101010", /* default background colour */
+	"#b2b2b2", /* default foreground colour */
+	"#262626", /* default background colour */
 };
 
 
