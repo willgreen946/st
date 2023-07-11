@@ -5,7 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "ubuntu mono:pixelsize=14:antialias=true:autohint=true";
+static char *fonts[] = {
+	"terminus:pixelsize=14:antialias=true:autohint=true",
+	"Perfect DOS VGA 437:pixelsize=14:antialias=true:autohint=true",
+	"ubuntu mono:pixelsize=14:antialias=true:autohint=true",
+};
+static size_t currentfont = 0;
 static int borderpx = 4;
 
 /*
@@ -202,6 +207,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ SUPKEY,		XK_s,		cyclefonts,	{} },
 	{ SUPKEY|ShiftMask,     XK_K,           kscrollup,      {.i = -1} },
 	{ SUPKEY|ShiftMask,     XK_J,           kscrolldown,    {.i = -1} },
 };
