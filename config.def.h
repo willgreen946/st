@@ -7,7 +7,8 @@
  */
 static char *fonts[] = {
 	"terminus:pixelsize=14:antialias=true:autohint=true",
-	"Perfect DOS VGA 437:pixelsize=14:antialias=true:autohint=true",
+	"Fixedsys Excelsior:pixelsize=18:antialias=true:autohint=false",
+	"Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=false",
 	"ubuntu mono:pixelsize=14:antialias=true:autohint=true",
 };
 static size_t currentfont = 0;
@@ -125,8 +126,8 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#b2b2b2", /* default foreground colour */
-	"#262626", /* default background colour */
+	"#33ff66", /* default foreground colour */
+	"#000000", /* default background colour */
 };
 
 
