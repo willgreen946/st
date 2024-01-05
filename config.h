@@ -5,14 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *fonts[] = {
-	"terminus:pixelsize=14:antialias=true:autohint=true",
-	"Fixedsys Excelsior:pixelsize=18:antialias=true:autohint=false",
-	"Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=false",
-	"ubuntu mono:pixelsize=14:antialias=true:autohint=true",
-};
-static size_t currentfont = 0;
-static int borderpx = 4;
+static char *font = "spleen:pixelsize=24:antialias=true:autohint=true";
+static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -22,7 +16,7 @@ static int borderpx = 4;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/bin/mksh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -102,32 +96,32 @@ unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"#33ff66",
-	"#ffff33",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	"#000000",
+	"#AA0000",
+	"#00AA00",
+	"#AAAA00",
+	"#0000AA",
+	"#AA00AA",
+	"#00AAAA",
+	"#AAAAAA",
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	"#AAAAAA",
+	"#FF0000",
+	"#00FF00",
+	"#FFFF00",
+	"#0000FF",
+	"#FF00FF",
+	"#00FFFF",
+	"#FFFFFF",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"#33ff66", /* default foreground colour */
-	"#000000", /* default background colour */
+	"#81B5AC", /* default foreground colour */
+	"#031A16", /* default background colour */
 };
 
 
@@ -191,7 +185,6 @@ static MouseShortcut mshortcuts[] = {
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
-#define SUPKEY Mod4Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
@@ -208,9 +201,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ SUPKEY,		XK_s,		cyclefonts,	{} },
-	{ SUPKEY|ShiftMask,     XK_K,           kscrollup,      {.i = -1} },
-	{ SUPKEY|ShiftMask,     XK_J,           kscrolldown,    {.i = -1} },
 };
 
 /*

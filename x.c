@@ -59,7 +59,6 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
-static void cyclefonts(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -316,24 +315,17 @@ void
 zoomreset(const Arg *arg)
 {
 	Arg larg;
-	zoomabs(&larg);
+
+	if (defaultfontsize > 0) {
+		larg.f = defaultfontsize;
+		zoomabs(&larg);
+	}
 }
 
 void
 ttysend(const Arg *arg)
 {
 	ttywrite(arg->s, strlen(arg->s), 1);
-}
-
-void
-cyclefonts(const Arg *arg)
-{
-	currentfont++;
-	currentfont %= (sizeof fonts / sizeof fonts[0]);
-	usedfont = fonts[currentfont];
-	Arg larg;
-	larg.f = usedfontsize;
-	zoomabs(&larg);
 }
 
 int
@@ -1152,7 +1144,7 @@ xinit(int cols, int rows)
 	if (!FcInit())
 		die("could not init fontconfig.\n");
 
-	usedfont = (opt_font == NULL)? fonts[currentfont] : opt_font;
+	usedfont = (opt_font == NULL)? font : opt_font;
 	xloadfonts(usedfont, 0);
 
 	/* colors */
@@ -1650,8 +1642,6 @@ xsettitle(char *p)
 int
 xstartdraw(void)
 {
-	if (IS_SET(MODE_VISIBLE))
-		XCopyArea(xw.dpy, xw.win, xw.buf, dc.gc, 0, 0, win.w, win.h, 0, 0);
 	return IS_SET(MODE_VISIBLE);
 }
 
