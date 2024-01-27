@@ -59,6 +59,7 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void cyclefonts(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -981,6 +982,18 @@ xloadfont(Font *f, FcPattern *pattern)
 }
 
 void
+cyclefonts(const Arg *dummy)
+{
+	fonts_current++;
+	if (fonts_current > (sizeof fonts / sizeof fonts[0]) - 1) {
+		fonts_current = 0;
+	}
+	usedfont = fonts[fonts_current];
+	xloadfonts(fonts[fonts_current], 0);
+	redraw();
+}
+
+void
 xloadfonts(const char *fontstr, double fontsize)
 {
 	FcPattern *pattern;
@@ -1144,8 +1157,8 @@ xinit(int cols, int rows)
 	if (!FcInit())
 		die("could not init fontconfig.\n");
 
-	usedfont = (opt_font == NULL)? font : opt_font;
-	xloadfonts(usedfont, 0);
+	usedfont = fonts[fonts_current];
+	xloadfonts(fonts[fonts_current], 0);
 
 	/* colors */
 	xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
@@ -1411,10 +1424,6 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	} else {
 		bg = &dc.col[base.bg];
 	}
-
-	/* Change basic system colors [0-7] to bright system colors [8-15] */
-	if ((base.mode & ATTR_BOLD_FAINT) == ATTR_BOLD && BETWEEN(base.fg, 0, 7))
-		fg = &dc.col[base.fg + 8];
 
 	if (IS_SET(MODE_REVERSE)) {
 		if (fg == &dc.col[defaultfg]) {

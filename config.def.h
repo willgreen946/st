@@ -5,7 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "spleen:pixelsize=24:antialias=true:autohint=true";
+static char *fonts[] = {
+  "spleen:pixelsize=24:antialias=true:autohint=true",
+  "terminus:pixelsize=24:antialias=true:autohint=true"
+};
+
+static int fonts_current = 0;
 static int borderpx = 4;
 
 /*
@@ -16,7 +21,7 @@ static int borderpx = 4;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/ksh";
+static char *shell = "/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -124,7 +129,6 @@ static const char *colorname[] = {
 	"#000000", /* default background colour */
 };
 
-
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
@@ -201,6 +205,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ TERMMOD,              XK_F,           cyclefonts,     {}        },
 };
 
 /*
