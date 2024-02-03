@@ -7,7 +7,8 @@
  */
 static char *fonts[] = {
   "spleen:pixelsize=24:antialias=true:autohint=true",
-  "terminus:pixelsize=24:antialias=true:autohint=true"
+  "terminus:pixelsize=24:antialias=true:autohint=true",
+  "Linux Libertine:pixelsize=24:antialias=true:autohint=true"
 };
 
 static int fonts_current = 0;
