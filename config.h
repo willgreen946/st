@@ -1,5 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
+typedef struct {
+	const char* const colors[258]; /* Terminal colors */
+	unsigned int fg; /* foreground */
+	unsigned int bg; /* background */
+	unsigned int cs; /* cursor */
+	unsigned int rcs; /* reverse color */
+} ColorScheme;
+
 /*
  * appearance
  *
@@ -8,7 +16,6 @@
 static char *fonts[] = {
   "spleen:pixelsize=24:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
-  "Linux Libertine:pixelsize=24:antialias=true:autohint=true"
 };
 
 static int fonts_current = 0;
@@ -99,45 +106,41 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"#000000",
-	"#AA0000",
-	"#00AA00",
-	"#AAAA00",
-	"#0000AA",
-	"#AA00AA",
-	"#00AAAA",
-	"#AAAAAA",
+static const ColorScheme schemes[] = {
+	/* My normal color scheme */
+	{{"#000000", "#AA0000", "#00AA00", "#AAAA00",
+	  "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA",
+	  "#AAAAAA", "#FF0000", "#00FF00", "#FFFF00",
+	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
+															/* fg bg curs rev curs */
 
-	/* 8 bright colors */
-	"#AAAAAA",
-	"#FF0000",
-	"#00FF00",
-	"#FFFF00",
-	"#0000FF",
-	"#FF00FF",
-	"#00FFFF",
-	"#FFFFFF",
+	/* Old VT* terminal orange color */
+	{{"#000000", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
 
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"#AAAAAA", /* default foreground colour */
-	"#000000", /* default background colour */
+	/* Old VT* terminal green color */
+	{{"#000000", "#4AFF00", "#4AFF00", "#4AFF00",
+	  "#4AFF00", "#4AFF00", "#4AFF00", "#4AFF00",
+	  "#4AFF00", "#4AFF00", "#4AFF00", "#4AFF00",
+	  "#4AFF00", "#4AFF00", "#4AFF00", "#4AFF00",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
 };
+
+static const char * const * colorname;
+int colorscheme = 0;
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg;
+unsigned int defaultbg;
+unsigned int defaultcs;
+static unsigned int defaultrcs;
 
 /*
  * Default shape of cursor
@@ -207,6 +210,8 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ TERMMOD,              XK_F,           cyclefonts,     {}        },
+	{ TERMMOD,              XK_H,           nextscheme,     {.i = +1} },
+	{ TERMMOD,              XK_L,           nextscheme,     {.i = -1} },
 };
 
 /*
