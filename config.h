@@ -107,19 +107,18 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 static const ColorScheme schemes[] = {
-	/* My normal color scheme */
-	{{"#000000", "#AA0000", "#00AA00", "#AAAA00",
-	  "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA",
-	  "#AAAAAA", "#FF0000", "#00FF00", "#FFFF00",
-	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
-	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
-															/* fg bg curs rev curs */
-
 	/* Old VT* terminal orange color */
 	{{"#000000", "#FFB700", "#FFB700", "#FFB700",
 	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
 	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
 	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
+
+	/* My normal color scheme */
+	{{"#000000", "#AA0000", "#00AA00", "#AAAA00",
+	  "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA",
+	  "#AAAAAA", "#FF0000", "#00FF00", "#FFFF00",
+	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
 	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
 
 	/* Old VT* terminal green color */
