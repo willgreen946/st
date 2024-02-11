@@ -7,8 +7,12 @@ VERSION = 0.9
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+#X11INC = /usr/X11R6/include
+#X11LIB = /usr/X11R6/lib
+
+# NetBSD
+X11INC = /usr/X11R7/include
+X11LIB = /usr/X11R7/lib
 
 PKG_CONFIG = pkg-config
 
@@ -33,4 +37,4 @@ LIBS = -L$(X11LIB) -lm -lX11 -lutil -lXft \
 MANPREFIX = ${PREFIX}/man
 
 # compiler and linker
- CC = tcc
+CC = cc

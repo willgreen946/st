@@ -121,6 +121,13 @@ static const ColorScheme schemes[] = {
 	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
 	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
 
+	/* Normal reversed */
+	{{"#FFFFFF", "#AA0000", "#00AA00", "#AAAA00",
+	  "#0000AA", "#AA00AA", "#00AAAA", "#000000",
+	  "#AAAAAA", "#FF0000", "#00FF00", "#FFFF00",
+	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
+
 	/* Old VT* terminal green color */
 	{{"#000000", "#33FF33", "#33FF33", "#33FF33",
 	  "#33FF33", "#33FF33", "#33FF33", "#33FF33",
