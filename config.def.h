@@ -13,10 +13,19 @@ typedef struct {
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
+#if defined(__FreeBSD__)
+static char *fonts[] = {
+  "Spleen 12x24:pixelsize=24:antialias=true:autohint=true",
+  "terminus:pixelsize=24:antialias=true:autohint=true",
+};
+#endif /* __FreeBSD__ */
+
+#if defined(__linux__) || defined(__NetBSD__) || defined(__OpenBSD__)
 static char *fonts[] = {
   "spleen:pixelsize=24:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
 };
+#endif /* __linux__ & __NetBSD__ & __OpenBSD__ */
 
 static int fonts_current = 0;
 static int borderpx = 4;
