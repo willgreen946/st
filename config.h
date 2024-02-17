@@ -16,14 +16,20 @@ typedef struct {
 #if defined(__FreeBSD__)
 static char *fonts[] = {
   "Spleen 12x24:pixelsize=24:antialias=true:autohint=true",
+  "gallant 12x22:pixelsize=24:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
+  "Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=true",
+  "IBM 3270:pixelsize=24:antialias=true:autohint=true",
 };
 #endif /* __FreeBSD__ */
 
 #if defined(__linux__) || defined(__NetBSD__) || defined(__OpenBSD__)
 static char *fonts[] = {
   "spleen:pixelsize=24:antialias=true:autohint=true",
+  "gallant 12x22:pixelsize=24:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
+  "Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=true",
+  "IBM 3270:pixelsize=24:antialias=true:autohint=true",
 };
 #endif /* __linux__ & __NetBSD__ & __OpenBSD__ */
 
@@ -116,13 +122,6 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 static const ColorScheme schemes[] = {
-	/* Old VT* terminal orange color */
-	{{"#000000", "#FFB700", "#FFB700", "#FFB700",
-	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
-	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
-	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
-	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
-
 	/* My normal color scheme */
 	{{"#000000", "#AA0000", "#00AA00", "#AAAA00",
 	  "#0000AA", "#AA00AA", "#00AAAA", "#AAAAAA",
@@ -135,6 +134,13 @@ static const ColorScheme schemes[] = {
 	  "#0000AA", "#AA00AA", "#00AAAA", "#000000",
 	  "#AAAAAA", "#FF0000", "#00FF00", "#FFFF00",
 	  "#0000FF", "#FF00FF", "#00FFFF", "#FFFFFF",
+	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
+
+	/* Old VT* terminal orange color */
+	{{"#000000", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
+	  "#FFB700", "#FFB700", "#FFB700", "#FFB700",
 	  [256]="#cccccc", "#555555"}, 7, 0, 7, 0},
 
 	/* Old VT* terminal green color */
@@ -216,9 +222,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ TERMMOD,              XK_N,           zoom,           {.f = +1} },
+	{ TERMMOD,              XK_P,           zoom,           {.f = -1} },
+	{ TERMMOD,              XK_R,           zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
