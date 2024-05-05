@@ -15,19 +15,19 @@ typedef struct {
  */
 #if defined(__FreeBSD__)
 static char *fonts[] = {
+  "terminus:bold:pixelsize=24:antialias=true:autohint=true",
   "Spleen 12x24:pixelsize=24:antialias=true:autohint=true",
-  "gallant 12x22:pixelsize=24:antialias=true:autohint=true",
+  "gallant 12x22:pixelsize=22:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
-  "Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=true",
   "IBM 3270:pixelsize=24:antialias=true:autohint=true",
 };
 #endif /* __FreeBSD__ */
 
 #if defined(__linux__) || defined(__NetBSD__) || defined(__OpenBSD__)
 static char *fonts[] = {
-  "spleen:pixelsize=24:antialias=true:autohint=true",
-  "gallant 12x22:pixelsize=24:antialias=true:autohint=true",
   "terminus:pixelsize=24:antialias=true:autohint=true",
+  "spleen:pixelsize=24:antialias=true:autohint=true",
+  "gallant 12x22:pixelsize=22:antialias=true:autohint=true",
   "Perfect DOS VGA 437:pixelsize=16:antialias=true:autohint=true",
   "IBM 3270:pixelsize=24:antialias=true:autohint=true",
 };
